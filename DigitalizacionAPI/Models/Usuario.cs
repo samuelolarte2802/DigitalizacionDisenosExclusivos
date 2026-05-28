@@ -24,6 +24,10 @@ namespace DigitalizacionAPI.Models
         [Required]
         [Column("credencial_hash")]
         public string CredencialHash { get; set; }
+        
+        [Required]
+        [Column("correo")]
+        public string Correo { get; set; }
 
     }
 }

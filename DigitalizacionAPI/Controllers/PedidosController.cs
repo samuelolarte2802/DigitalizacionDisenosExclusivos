@@ -27,11 +27,25 @@ namespace DigitalizacionAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidos()
+        public async Task<IActionResult> GetPedidos()
         {
+            // Hacemos el JOIN directamente en la consulta a la base de datos
+            var listaPedidos = await (from p in _context.Pedidos
+                                      join c in _context.Clientes on p.IdCliente equals c.IdCliente
+                                      select new
+                                      {
+                                          idPedido = p.IdPedido,
+                                          idCliente = p.IdCliente,
+                                          nombre = c.NombreCompleto,
+                                          fechaPedido = p.FechaPedido,
+                                          totalPagar = p.TotalPagar,
+                                          abono = p.Abono,
+                                          idUsuario = p.IdUsuario,
+                                          estado = p.Estado,
+                                          estadoPago = p.EstadoPago
+                                      }).ToListAsync();
 
-            return await _context.Pedidos.ToListAsync();
-
+            return Ok(listaPedidos);
         }
 
         [HttpGet("estado/{estado}")]

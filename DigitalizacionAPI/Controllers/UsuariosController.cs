@@ -50,6 +50,30 @@ namespace DigitalizacionAPI.Controllers
 
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO credenciales)
+        {
+            
+            var usuarioDb = await _context.Usuarios.FirstOrDefaultAsync(u =>
+                u.Correo == credenciales.Correo &&
+                u.CredencialHash == credenciales.Password);
+
+            if (usuarioDb == null)
+            {
+            
+                return Unauthorized(new { mensaje = "Usuario o contraseña incorrectos" });
+
+            }
+
+            return Ok(new
+            {
+
+                id = usuarioDb.IdUsuario,
+                usuario = usuarioDb.Nombre
+
+            });
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
@@ -72,5 +96,11 @@ namespace DigitalizacionAPI.Controllers
             return NoContent();
 
         }
-    }
+        public class LoginDTO
+        {
+            public string Correo { get; set; }
+            public string Password { get; set; }
+
+        }
+    }   
 }
