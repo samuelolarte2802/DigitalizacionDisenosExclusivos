@@ -2,13 +2,11 @@ name: Integración Continua (CI) - Diseño Exclusivos
 
 on:
   push:
-    branches: [ "main", "master"]
-      
+    branches: [ "main", "master"]      
   pull_request:
     branches: [ "main", "master"]
 
   jobs:
-
     build-backend:
       name: Compilar API .NET
       runs-on: ubuntu-latest
@@ -28,7 +26,6 @@ on:
           run: dotnet build --no-restore --configuration Release
 
       build-frontend:
-
         name: Compilar Frontend React
         runs-on: ubuntu-latest
         defaults:
@@ -36,7 +33,6 @@ on:
             working-directory: ./frontend-diseños-exclusivos
 
         steps:
-
           - name: Descargar el código
             uses: actions/checkout@v4
 
