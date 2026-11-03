@@ -2,6 +2,10 @@
 using DigitalizacionAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace DigitalizacionAPI.Controllers
 {
@@ -12,10 +16,12 @@ namespace DigitalizacionAPI.Controllers
     {
 
         private readonly AppDbContext _context;
-        public UsuariosController(AppDbContext context)
+        private readonly IConfiguration _config;
+        public UsuariosController(AppDbContext context, IConfiguration config)
         {
 
             _context = context;
+            _config = config;
 
         }
 
@@ -54,9 +60,9 @@ namespace DigitalizacionAPI.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDTO credenciales)
         {
             
-            var usuarioDb = await _context.Usuarios.FirstOrDefaultAsync(u =>
-                u.Correo == credenciales.Correo &&
-                u.CredencialHash == credenciales.Password);
+            var usuarioDb = await _context.Usuarios
+                .Include(u => u.Rol)
+                .FirstOrDefaultAsync(u => u.Correo == credenciales.Correo);
 
             if (usuarioDb == null)
             {
@@ -65,13 +71,91 @@ namespace DigitalizacionAPI.Controllers
 
             }
 
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(credenciales.Password, usuarioDb.CredencialHash);
+
+            if  (!isPasswordValid)
+            {
+
+                return Unauthorized(new { mensaje = "Usuario o contraseña incorrectos" });
+
+            }
+
+            var claims = new[]
+            {
+
+                new Claim(ClaimTypes.NameIdentifier, usuarioDb.IdUsuario.ToString()),
+                new Claim(ClaimTypes.Email, usuarioDb.Correo),
+                new Claim(ClaimTypes.Name, usuarioDb.Nombre),
+                new Claim(ClaimTypes.Role, usuarioDb.Rol?.NombreRol ?? "Sin Rol")
+
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(8),
+                SigningCredentials = creds,
+                Issuer = _config["Jwt:Issuer"],
+                Audience = _config["Jwt:Audience"]
+
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var jwtToken = tokenHandler.WriteToken(token);
+
             return Ok(new
             {
 
-                id = usuarioDb.IdUsuario,
-                usuario = usuarioDb.Nombre
+                token = jwtToken,
+                usuario = new
+                {
+                    
+                    nombre = usuarioDb.Nombre,
+                    rol = usuarioDb.Rol?.NombreRol,
+
+                }
+            });
+        }
+
+        [HttpGet("crear-admin")]
+        public async Task<IActionResult> CrearAdmin()
+        {
+
+            var rolAdmin = await _context.Roles.FirstOrDefaultAsync();
+            if (rolAdmin == null)
+            {
+
+                rolAdmin = new Rol { NombreRol = "Administrador" };
+                _context.Roles.Add(rolAdmin);
+                await _context.SaveChangesAsync();
+
+            }
+
+            var usuario = new Usuario
+            {
+                Nombre = "Admin",
+                Correo = "admin@taller.com",
+                CredencialHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
+                IdRol = rolAdmin.IdRol
+
+            };
+
+            _context.Usuarios.Add(usuario);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+
+                Mensaje = "!Usuario listo para usarse en React!",
+                Correo = "admin@taller.com",
+                Password = "admin123"
 
             });
+
         }
 
         [HttpPut("{id}")]

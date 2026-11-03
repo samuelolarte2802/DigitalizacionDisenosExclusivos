@@ -1,85 +1,53 @@
-﻿using DigitalizacionAPI.Data;
-using DigitalizacionAPI.Models;
+﻿using DigitalizacionAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Authorization;
+using DigitalizacionAPI.Repositories;
 
 namespace DigitalizacionAPI.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PedidosController : ControllerBase
     {
+        private readonly IPedidoRepository _pedidoRepository;
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id_pedido")]
-        public int IdPedido { get; set; }
-        private readonly AppDbContext _context;
-
-        public PedidosController(AppDbContext context)
+        public PedidosController(IPedidoRepository pedidoRepository)
         {
 
-            _context = context;
+            _pedidoRepository = pedidoRepository;
 
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPedidos()
         {
-            // Hacemos el JOIN directamente en la consulta a la base de datos
-            var listaPedidos = await (from p in _context.Pedidos
-                                      join c in _context.Clientes on p.IdCliente equals c.IdCliente
-                                      select new
-                                      {
-                                          idPedido = p.IdPedido,
-                                          idCliente = p.IdCliente,
-                                          nombre = c.NombreCompleto,
-                                          fechaPedido = p.FechaPedido,
-                                          totalPagar = p.TotalPagar,
-                                          abono = p.Abono,
-                                          idUsuario = p.IdUsuario,
-                                          estado = p.Estado,
-                                          estadoPago = p.EstadoPago
-                                      }).ToListAsync();
-
+            
+            var listaPedidos = await _pedidoRepository.ObtenerTodosConClientesAsync();
             return Ok(listaPedidos);
+
         }
 
         [HttpGet("estado/{estado}")]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidosPorEstado(string estado)
         {
-            var pedidos = await _context.Pedidos
-                                        .Where(p => p.Estado == estado)
-                                        .OrderBy(p => p.FechaPedido)
-                                        .ToListAsync();
+            var pedidos = await _pedidoRepository.ObtenerPorEstadoAsync(estado);
 
             if (!pedidos.Any())
                 return NotFound(new { mensaje = $"No hay pedidos en estado '{estado}' actualmente." });
 
             return Ok(pedidos);
+
         }
 
         [HttpGet("caja-semanal")]
         public async Task<ActionResult<object>> GetCajaSemanal()
         {
             
-            var fechaLimite = DateTime.UtcNow.AddDays(-7);
-            var totalRecaudado = await _context.Pedidos
-                                               .Where(p => p.FechaPedido >= fechaLimite)
-                                               .SumAsync(p => p.Abono);
-            var totalPedidos = await _context.Pedidos
-                                             .CountAsync(p => p.FechaPedido >= fechaLimite);
-            return Ok(new
-            {
+            var reporte = await _pedidoRepository.ObtenerCajaSemanalAsync();
+            return Ok(reporte);
 
-                mensaje = "Cierre de caja de los últimos 7 días",
-                pedidosNuevos = totalPedidos,
-                totalAbonos = totalRecaudado
-
-            });
         }
 
         [HttpPost]
@@ -87,8 +55,7 @@ namespace DigitalizacionAPI.Controllers
         public async Task<ActionResult<Pedido>> PostPedido(Pedido pedido)
         {
 
-            _context.Pedidos.Add(pedido);
-            await _context.SaveChangesAsync();
+            await _pedidoRepository.CrearAsync(pedido);
             return CreatedAtAction(nameof(GetPedidos), new { id = pedido.IdPedido }, pedido);
 
         }
@@ -100,9 +67,8 @@ namespace DigitalizacionAPI.Controllers
         {
 
             if (id != pedido.IdPedido) return BadRequest();
-
-            _context.Entry(pedido).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            
+            await _pedidoRepository.ActualizarAsync(pedido);
             return NoContent();
 
         }
@@ -113,11 +79,10 @@ namespace DigitalizacionAPI.Controllers
         public async Task<IActionResult> DeletePedido(int id)
         {
 
-            var pedido = await _context.Pedidos.FindAsync(id);
-            if (pedido == null) return NotFound();
+            var pedido = await _pedidoRepository.ObtenerPorIdAsync(id);
+            if(pedido == null) return NotFound();
 
-            _context.Pedidos.Remove(pedido);
-            await _context.SaveChangesAsync();
+            await _pedidoRepository.EliminarAsync(pedido);
             return NoContent();
 
         }

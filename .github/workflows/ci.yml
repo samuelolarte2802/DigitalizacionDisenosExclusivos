@@ -1,0 +1,52 @@
+name: Integración Continua (CI) - Diseño Exclusivos
+
+on:
+  push:
+    branches: [ "main", "master"]
+      
+  pull_request:
+    branches: [ "main", "master"]
+
+  jobs:
+
+    build-backend:
+      name: Compilar API .NET
+      runs-on: ubuntu-latest
+      steps:
+        - name: Descargar el código
+          uses: actions/checkout@v4
+
+        - name: instalar .NET Core
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '10.0.x'
+
+        - name: Restaurar paquetes (NuGet)
+          run: dotnet restore
+
+        - name: Compilar Backend
+          run: dotnet build --no-restore --configuration Release
+
+      build-frontend:
+
+        name: Compilar Frontend React
+        runs-on: ubuntu-latest
+        defaults:
+          run:
+            working-directory: ./frontend-diseños-exclusivos
+
+        steps:
+
+          - name: Descargar el código
+            uses: actions/checkout@v4
+
+          - name: Instalar Node.js
+            uses: actions/setup-node@v3
+            with:
+              node-version: '20.x'
+
+          - name: Instalar dependencias (npm install)
+            run: npm install
+
+          - name: Compilar Frontend (npm run build)
+            run: npm run build

@@ -20,10 +20,6 @@ namespace DigitalizacionAPI.Data
                     .Property(r => r.IdRol)
                     .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Usuario>()
-                    .Property(u => u.IdUsuario)
-                    .ValueGeneratedOnAdd();
-
             modelBuilder.Entity<ListaPrecio>()
                     .Property(l => l.IdPrecio)
                     .ValueGeneratedOnAdd();
@@ -31,6 +27,20 @@ namespace DigitalizacionAPI.Data
             modelBuilder.Entity<Proveedor>()
                 .Property(p => p.IdProveedor)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Usuario>(entity =>
+            {
+
+                entity.Property(u => u.IdUsuario)
+                      .ValueGeneratedOnAdd();
+
+                entity.HasOne(u => u.Rol)
+                      .WithMany()
+                      .HasForeignKey(u => u.IdRol);
+
+                entity.Property(u => u.IdRol).HasColumnName("id_rol");
+
+            });
 
         }
         public DbSet<Institucion> Instituciones { get; set; }

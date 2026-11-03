@@ -1,78 +1,84 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import clienteAxios from './api/axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import useAuthStore from './store/authStore';
 
 const Dashboard = () => {
 
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-
-    idCliente: '',
-    totalPagar: '',
-    abono: ''
-
-  });
+  
   const navigate = useNavigate();
-  const handleLogout = () => {
+  const { usuario, logout } = useAuthStore();
+  const {register, handleSubmit, reset, formState: { errors }} = useForm();
 
+  const handleLogoutClick = () => {
+
+    logout();
     navigate('/'); 
 
   };
 
-  const API_URL = "https://localhost:7242/api/pedidos";
-
   const fetchPedidos = async () => {
     try {
-      const response = await axios.get(API_URL);
+
+      const response = await clienteAxios.get('/pedidos');
       setPedidos(response.data);
       setLoading(false);
+
     } catch (error) {
+
       console.error("Error al conectar con la API:", error);
+      if(error.response && error.response.status === 401){
+
+        handleLogoutClick();
+
+      }
       setLoading(false);
     }
   };
 
   useEffect(() => {
+
+    const token = localStorage.getItem('token');
+    if (!token){
+      
+      navigate('/');
+      return;
+
+    }
     fetchPedidos();
-  }, []);
+  }, [navigate]);
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleCrearPedido = async (e) => {
-    e.preventDefault();
+  const onSubmitPedido = async (data) => {
+    
     try {
 
       const nuevoPedido = {
 
-        idCliente: parseInt(formData.idCliente),
+        idCliente: parseInt(data.idCliente),
         fechaPedido: new Date().toISOString(),
-        totalPagar: parseFloat(formData.totalPagar),
-        abono: parseFloat(formData.abono),
-        idUsuario: 1,
+        totalPagar: parseFloat(data.totalPagar),
+        abono: parseFloat(data.abono),
+        idUsuario: usuario?.idUsuario || 1,
         estado: "En Corte",
-        estadoPago: formData.abono >= formData.totalPagar ? "Pagado" : "Abonado"
-
+        estadoPago: parseFloat(data.abono) >= parseFloat(data.totalPagar) ? "Pagado" : "Abonado"
       };
 
-      await axios.post(API_URL, nuevoPedido);
-      
+      await clienteAxios.post('/pedidos', nuevoPedido);
       setIsModalOpen(false);
-      setFormData({ idCliente: '', totalPagar: '', abono: '' });
-      fetchPedidos(); 
-      
-    } catch (error) {
+      reset();
+      setLoading(true);
+      fetchPedidos();
 
-      console.error("Error al crear el pedido:", error);
-      alert("Hubo un error al guardar el pedido. Revisa la consola.");
+      } catch (error) {
 
-    }
+        console.error("Error al crear el pedido:", error);
+        alert("Hubo un error al guardar el pedido. Revisa la consola.");
+
+      }
   };
 
   if (loading) return <div className="p-10 text-center text-gray-500 font-semibold">Cargando datos de la base de datos...</div>;
@@ -82,7 +88,11 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-100 p-8 relative">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Panel de Pedidos - Diseños Exclusivos</h1>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800">Panel de Pedidos - Diseños Exclusivos</h1>
+            <p className="text-gray-600">Bienvenido, {usuario?.nombre || 'Administrador'}</p>
+          </div>
+
           <div className="flex space-x-3">
             <button 
               onClick={() => setIsModalOpen(true)}
@@ -93,7 +103,7 @@ const Dashboard = () => {
             </button>
             <button 
 
-              onClick={handleLogout}
+              onClick={handleLogoutClick}
               className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors"
 
             >
@@ -145,44 +155,49 @@ const Dashboard = () => {
           <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Registrar Nuevo Pedido</h2>
             
-            <form onSubmit={handleCrearPedido} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmitPedido)} className="space-y-4">
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">ID del Cliente</label>
                 <input 
                   type="number" 
-                  name="idCliente"
-                  value={formData.idCliente}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  {...register("idCliente", {
+
+                    required: "El ID del cliente es obligatorio",
+                    min: { value: 1, message: "El ID del cliente debe ser mayor que 0" }
+
+                  })} 
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.idCliente ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder="Ej. 109"
-                  required 
                 />
+                {errors.idCliente && <span className="text-red-500 text-sm">{errors.idCliente.message}</span>}
               </div>
               
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">Total a Pagar ($)</label>
                 <input 
                   type="number" 
-                  name="totalPagar"
-                  value={formData.totalPagar}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  {...register("totalPagar", {
+                    required: "Debes ingresar un precio",
+                    min: { value: 1000, message: "El precio mínimo es $1,000" }
+                  })}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.totalPagar ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder="Ej. 150000"
-                  required 
                 />
+                {errors.totalPagar && <span className="text-red-500 text-sm">{errors.totalPagar.message}</span>}
               </div>
 
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">Abono Inicial ($)</label>
                 <input 
                   type="number" 
-                  name="abono"
-                  value={formData.abono}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  {...register("abono", {
+                    required: "Ingresa 0 si no hay abono",
+                    min: { value: 0, message: "El abono inicial debe ser un valor positivo" }
+                  })}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.abono ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder="Ej. 50000"
-                  required 
                 />
+                {errors.abono && <span className="text-red-500 text-sm">{errors.abono.message}</span>}
               </div>
 
               <div className="flex justify-end space-x-3 mt-8">

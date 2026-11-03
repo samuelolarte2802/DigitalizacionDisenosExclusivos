@@ -23,7 +23,12 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+
+        const tokenJWT = response.data.token;
+        localStorage.setItem('token', tokenJWT);
+        localStorage.setItem('usuario', JSON.stringify(response.data.usuario));
         navigate('/dashboard');
+
       }
     } catch (err) {
 
