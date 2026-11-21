@@ -22,13 +22,23 @@ namespace DigitalizacionAPI.Repositories
                            { 
                                idPedido = p.IdPedido,
                                idCliente = p.IdCliente,
-                               nombre = c.NombreCompleto,
+                               tipoProducto = p.TipoProducto,
+                               fechaEntrega = p.FechaEntrega,
+                               piezas = p.Piezas,
                                fechaPedido = p.FechaPedido,
                                totalPagar = p.TotalPagar,
                                abono = p.Abono,
                                idUsuario = p.IdUsuario,
                                estado = p.Estado,
-                               estadoPago = p.EstadoPago
+                               estadoPago = p.EstadoPago,
+                               cliente = new { 
+
+                                   nombreCompleto = c.NombreCompleto,
+                                   celular = c.Celular,
+                                   aliasCliente = c.AliasCliente,
+                                   medidas = c.Medidas
+
+                               }
                            }).ToListAsync();
 
         }
@@ -74,12 +84,18 @@ namespace DigitalizacionAPI.Repositories
 
         }
 
-        public async Task ActualizarAsync(Pedido pedido)
+        public async Task ActualizarAsync(Pedido pedidoActualizado)
         {
 
-            _context.Entry(pedido).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            var pedidoOriginal = await _context.Pedidos.FindAsync(pedidoActualizado.IdPedido);
+            if (pedidoOriginal != null)
+            {
 
+                pedidoOriginal.Estado = pedidoActualizado.Estado;
+                pedidoOriginal.EstadoPago = pedidoActualizado.EstadoPago;
+                await _context.SaveChangesAsync();
+
+            }
         }
 
         public async Task EliminarAsync(Pedido pedido)

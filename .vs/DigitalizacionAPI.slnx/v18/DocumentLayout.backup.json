@@ -1,0 +1,200 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\migrations\\20261117045309_agregarmedidasespecificas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\migrations\\20261117045309_agregarmedidasespecificas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\digitalizacionapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\digitalizacionapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\controllers\\listasprecioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\controllers\\listasprecioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|c:\\users\\samuel\\source\\repos\\digitalizacionapi\\digitalizacionapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74CA7250-AF93-5852-D1B8-4A06BA76A7BF}|DigitalizacionAPI\\DigitalizacionAPI.csproj|solutionrelative:digitalizacionapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAuwAsAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T06:02:52.41Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\appsettings.json",
+              "RelativeToolTip": "DigitalizacionAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-29T23:03:28.673Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Program.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Program.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAiwBcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-02T22:35:03.041Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20261117045309_AgregarMedidasEspecificas.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Migrations\\20261117045309_AgregarMedidasEspecificas.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Migrations\\20261117045309_AgregarMedidasEspecificas.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Migrations\\20261117045309_AgregarMedidasEspecificas.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Migrations\\20261117045309_AgregarMedidasEspecificas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T04:53:09.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DigitalizacionAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\DigitalizacionAPI.csproj",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\DigitalizacionAPI.csproj",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\DigitalizacionAPI.csproj",
+              "RelativeToolTip": "DigitalizacionAPI\\DigitalizacionAPI.csproj",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowAQAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-11-17T04:48:47.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Models\\Pedido.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Models\\Pedido.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Models\\Pedido.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Models\\Pedido.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAYwBgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T04:32:21.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-11T05:52:54.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PedidosController.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\PedidosController.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Controllers\\PedidosController.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\PedidosController.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Controllers\\PedidosController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAA7wDcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-11T05:52:33.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProveedoresController.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\ProveedoresController.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Controllers\\ProveedoresController.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\ProveedoresController.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Controllers\\ProveedoresController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-11T05:52:05.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-11T05:45:35.871Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ListasPreciosController.cs",
+              "DocumentMoniker": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\ListasPreciosController.cs",
+              "RelativeDocumentMoniker": "DigitalizacionAPI\\Controllers\\ListasPreciosController.cs",
+              "ToolTip": "C:\\Users\\Samuel\\source\\repos\\DigitalizacionAPI\\DigitalizacionAPI\\Controllers\\ListasPreciosController.cs",
+              "RelativeToolTip": "DigitalizacionAPI\\Controllers\\ListasPreciosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-11T05:45:23.91Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

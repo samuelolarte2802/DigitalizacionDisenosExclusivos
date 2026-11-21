@@ -1,5 +1,6 @@
 ﻿using DigitalizacionAPI.Data;
 using DigitalizacionAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DigitalizacionAPI.Controllers
 {
 
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientesController : ControllerBase

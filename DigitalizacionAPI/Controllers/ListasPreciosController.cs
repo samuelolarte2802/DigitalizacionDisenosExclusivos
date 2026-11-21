@@ -1,11 +1,13 @@
 ﻿using DigitalizacionAPI.Data;
 using DigitalizacionAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalizacionAPI.Controllers
 {
 
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ListasPreciosController : ControllerBase

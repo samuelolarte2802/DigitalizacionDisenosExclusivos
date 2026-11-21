@@ -18,7 +18,7 @@ namespace DigitalizacionAPI.Models
         public int IdRol { get; set; }
 
         [ForeignKey("IdRol")]
-        public virtual Rol Rol { get; set; }
+        public virtual Rol? Rol { get; set; }
 
         [Required]
         [Column("nombre")]

@@ -1,20 +1,22 @@
 ﻿using DigitalizacionAPI.Data;
 using DigitalizacionAPI.Models;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+
 namespace DigitalizacionAPI.Controllers
 {
 
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-
         private readonly AppDbContext _context;
         private readonly IConfiguration _config;
         public UsuariosController(AppDbContext context, IConfiguration config)
@@ -56,6 +58,7 @@ namespace DigitalizacionAPI.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO credenciales)
         {
@@ -121,6 +124,7 @@ namespace DigitalizacionAPI.Controllers
             });
         }
 
+        [AllowAnonymous]
         [HttpGet("crear-admin")]
         public async Task<IActionResult> CrearAdmin()
         {

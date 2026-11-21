@@ -1,10 +1,13 @@
 ﻿using DigitalizacionAPI.Data;
 using DigitalizacionAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalizacionAPI.Controllers
 {
+
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProveedoresController : ControllerBase
@@ -52,6 +55,12 @@ namespace DigitalizacionAPI.Controllers
         {
 
             if (id != proveedor.IdProveedor) return BadRequest();
+            if (proveedor.FechaRegistro.HasValue)
+            {
+
+                proveedor.FechaRegistro = DateTime.SpecifyKind(proveedor.FechaRegistro.Value, DateTimeKind.Utc);
+
+            }
             _context.Entry(proveedor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();

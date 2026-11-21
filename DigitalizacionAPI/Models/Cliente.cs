@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
 
 namespace DigitalizacionAPI.Models
 {
@@ -22,10 +23,19 @@ namespace DigitalizacionAPI.Models
         public string Celular { get; set; }
 
         [Column("alias_cliente")]
-        public string AliasCliente { get; set; }
+        public string? AliasCliente { get; set; }
+
+        [Column("tipo_cliente")]
+        public string TipoCliente { get; set; } = "Adulto";
+
+        [Column("nombre_responsable")]
+        public string? NombreResponsable { get; set; }
 
         [Column("fecha_registro")]
         public DateTime FechaRegistro { get; set; }
+
+        [Column("medidas", TypeName = "jsonb")]
+        public JsonElement Medidas { get; set; } 
 
     }
 }

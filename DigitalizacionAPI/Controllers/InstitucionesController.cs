@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DigitalizacionAPI.Controllers
 {
+
     [Route("api/[controller]")] // Esto hace que la ruta sea /api/Instituciones
     [ApiController]
     public class InstitucionesController : ControllerBase

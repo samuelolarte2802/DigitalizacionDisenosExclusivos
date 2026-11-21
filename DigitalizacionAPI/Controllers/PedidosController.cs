@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using DigitalizacionAPI.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalizacionAPI.Controllers
 {
 
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class PedidosController : ControllerBase
     {
         private readonly IPedidoRepository _pedidoRepository;
@@ -55,6 +56,12 @@ namespace DigitalizacionAPI.Controllers
         public async Task<ActionResult<Pedido>> PostPedido(Pedido pedido)
         {
 
+            if (pedido.FechaEntrega == null)
+            {
+
+                return BadRequest(new { mensaje = "La fecha de entrega es obligatoria." });
+
+            }
             await _pedidoRepository.CrearAsync(pedido);
             return CreatedAtAction(nameof(GetPedidos), new { id = pedido.IdPedido }, pedido);
 
